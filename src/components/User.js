@@ -98,6 +98,8 @@ export default function User() {
       } catch (error) {
         setError(error);
         setIsLoading(false);
+        localStorage.removeItem("token");
+        navigate("/login");
       }
     };
     fetchData();

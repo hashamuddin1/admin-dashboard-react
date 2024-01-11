@@ -8,6 +8,10 @@ import Grid from "@mui/material/Grid";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Skeleton from "@mui/material/Skeleton";
+import { Chart, CategoryScale } from "chart.js";
+import { Bar } from "react-chartjs-2";
+
+Chart.register(CategoryScale);
 
 export default function Home() {
   const [data, setData] = useState(null);
@@ -41,6 +45,8 @@ export default function Home() {
         console.log(error);
         setError(error);
         setIsLoading(false);
+        localStorage.removeItem("token");
+        navigate("/login");
       }
     };
     fetchData();
@@ -151,6 +157,41 @@ export default function Home() {
                   <Typography sx={{ mb: 1.5 }}>{data.totalTurnOver}</Typography>
                 </CardContent>
               </Card>
+            </Grid>
+            <Grid item xs={12} md={12} lg={12}>
+              <h3 style={{ textAlign: "center" }}>App Stats</h3>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Bar
+                  data={{
+                    labels: [
+                      "Users",
+                      "Active Lists",
+                      "Pending Lists",
+                      "Issues",
+                      "Roles",
+                    ],
+                    datasets: [
+                      {
+                        label: "ApplicationStats",
+                        data: [
+                          data.totalUsers,
+                          data.totalActiveList,
+                          data.totalPendingList,
+                          data.totalIssue,
+                          data.totalRoles,
+                        ],
+                        backgroundColor: [
+                          "orangered",
+                          "orangered",
+                          "orangered",
+                          "orangered",
+                          "orangered",
+                        ],
+                      },
+                    ],
+                  }}
+                />
+              </div>
             </Grid>
           </Grid>
         </Box>
