@@ -1,3 +1,8 @@
-.submitBtn{
+.submitBtn {
   background-color: orangered !important;
+}
+
+.logoutBtn:hover {
+  background-color: orangered !important;
+  color: white;
 }
