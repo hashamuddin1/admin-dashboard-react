@@ -6,3 +6,8 @@
   background-color: orangered !important;
   color: white;
 }
+
+.deletedBtn:hover {
+  background-color: white !important;
+  color: red;
+}
