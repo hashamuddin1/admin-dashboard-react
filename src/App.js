@@ -3,6 +3,7 @@ import Login from "./components/Login";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import User from "./components/User";
 import List from "./components/List";
+import Policy from "./components/Policy";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/login" exact element={<Login />}></Route>
           <Route path="/user" exact element={<User />}></Route>
           <Route path="/list" exact element={<List />}></Route>
+          <Route path="/policy" exact element={<Policy />}></Route>
         </Routes>
       </BrowserRouter>
     </>
