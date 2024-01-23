@@ -9,35 +9,24 @@ import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import "../App.css";
 
-export default function User() {
+export default function List() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
   const columns = [
-    { field: "fullName", headerName: "Full Name", width: 200 },
-    { field: "emailAddress", headerName: "Email Address", width: 250 },
-    { field: "phoneNumber", headerName: "Phone Number", width: 200 },
     {
-      field: "delete",
-      headerName: "Delete",
-      headerAlign: "center",
-      width: 100,
-      renderCell: (params) => (
-        <Button
-          onClick={(e) => {
-            e.stopPropagation();
-            handleDeleteClick(params.row.id);
-          }}
-          className="deletedBtn"
-          variant="contained"
-          sx={{ backgroundColor: "red" }}
-        >
-          Delete
-        </Button>
-      ),
+      field: "userId",
+      headerName: "User",
+      width: 150,
+      renderCell: (params) => params.row.userId.fullName,
     },
+    { field: "description", headerName: "Description", width: 150 },
+    { field: "baseCity", headerName: "Base City", width: 150 },
+    { field: "destinationCity", headerName: "Destination City", width: 150 },
+    { field: "receivingDate", headerName: "Receiving Date", width: 150 },
+    { field: "price", headerName: "Price", width: 150 },
   ];
 
   const SkeletonTable = () => (
@@ -83,14 +72,14 @@ export default function User() {
       try {
         setIsLoading(true);
         const response = await axios.get(
-          `${process.env.REACT_APP_BASE_URL_V1}/api/fetchAllUser`,
+          `${process.env.REACT_APP_BASE_URL_V1}/api/fetchAllList`,
           {
             headers: {
               "x-access-token": `${token}`,
             },
           }
         );
-        if (response.data) {
+        if (response.data.data) {
           setData(response.data.data);
           console.log(response.data.data);
           setIsLoading(false);
@@ -122,10 +111,21 @@ export default function User() {
   }
 
   const rowsWithIds = data.map(
-    ({ _id, fullName, emailAddress, phoneNumber }) => ({
-      fullName,
-      emailAddress,
-      phoneNumber,
+    ({
+      _id,
+      userId,
+      description,
+      baseCity,
+      destinationCity,
+      receivingDate,
+      price,
+    }) => ({
+      userId,
+      description,
+      baseCity,
+      destinationCity,
+      receivingDate,
+      price,
       id: _id,
     })
   );
@@ -140,7 +140,7 @@ export default function User() {
               {success}
             </Alert>
           )}
-          <h3>All Users</h3>
+          <h3>All Lists</h3>
           <div style={{ height: 450, width: "100%" }}>
             <DataGrid
               rows={rowsWithIds}

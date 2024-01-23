@@ -153,7 +153,7 @@ export default function Navbar() {
             disablePadding
             sx={{ display: "block" }}
             onClick={() => {
-              navigate("/");
+              navigate("/list");
             }}
           >
             <ListItemButton

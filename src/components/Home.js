@@ -8,10 +8,10 @@ import Grid from "@mui/material/Grid";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Skeleton from "@mui/material/Skeleton";
-import { Chart, CategoryScale } from "chart.js";
+import { Chart, CategoryScale, LinearScale, BarElement } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
-Chart.register(CategoryScale);
+Chart.register(CategoryScale, LinearScale, BarElement);
 
 export default function Home() {
   const [data, setData] = useState(null);
