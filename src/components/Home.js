@@ -162,6 +162,7 @@ export default function Home() {
               <h3 style={{ textAlign: "center" }}>App Stats</h3>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <Bar
+                  style={{ width: "100%" }}
                   data={{
                     labels: [
                       "Users",
