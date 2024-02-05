@@ -19,6 +19,8 @@ export default function User() {
     { field: "fullName", headerName: "Full Name", width: 200 },
     { field: "emailAddress", headerName: "Email Address", width: 250 },
     { field: "phoneNumber", headerName: "Phone Number", width: 200 },
+    { field: "state", headerName: "State", width: 200 },
+    { field: "city", headerName: "City", width: 200 },
     {
       field: "delete",
       headerName: "Delete",
@@ -105,9 +107,6 @@ export default function User() {
     fetchData();
   }, []);
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
   if (isLoading) {
     return (
       <>
@@ -122,10 +121,12 @@ export default function User() {
   }
 
   const rowsWithIds = data.map(
-    ({ _id, fullName, emailAddress, phoneNumber }) => ({
+    ({ _id, fullName, emailAddress, phoneNumber, state, city }) => ({
       fullName,
       emailAddress,
       phoneNumber,
+      state,
+      city,
       id: _id,
     })
   );
@@ -135,6 +136,11 @@ export default function User() {
       <Box sx={{ display: "flex" }}>
         <Navbar />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          {error && (
+            <Alert variant="filled" severity="error">
+              {error}
+            </Alert>
+          )}
           {success && (
             <Alert variant="filled" severity="success">
               {success}
@@ -152,6 +158,8 @@ export default function User() {
               }}
               pageSizeOptions={[2, 5, 10]}
               checkboxSelection={false}
+              autoHeight
+              autoHeightSizeMode="fullWidth"
             />
           </div>
         </Box>
