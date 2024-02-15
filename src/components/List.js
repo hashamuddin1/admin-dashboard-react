@@ -17,7 +17,7 @@ export default function List() {
   const navigate = useNavigate();
   const columns = [
     {
-      field: "fullName",
+      field: "userId",
       headerName: "Full name",
       width: 150,
       renderCell: (params) => params.row.userId.fullName,
