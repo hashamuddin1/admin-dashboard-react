@@ -20,6 +20,7 @@ export default function List() {
       field: "fullName",
       headerName: "Full name",
       width: 150,
+      renderCell: (params) => params.row.userId.fullName,
     },
     { field: "description", headerName: "Description", width: 150 },
     { field: "baseCity", headerName: "Base City", width: 150 },
@@ -112,14 +113,14 @@ export default function List() {
   const rowsWithIds = data.map(
     ({
       _id,
-      fullName,
+      userId,
       description,
       baseCity,
       destinationCity,
       receivingDate,
       price,
     }) => ({
-      fullName,
+      userId,
       description,
       baseCity,
       destinationCity,
