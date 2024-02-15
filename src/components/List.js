@@ -18,7 +18,7 @@ export default function List() {
   const columns = [
     {
       field: "userId",
-      headerName: "User",
+      headerName: "Full name",
       width: 150,
       renderCell: (params) => params.row.userId.fullName,
     },
